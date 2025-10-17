@@ -3,6 +3,16 @@
 #   CIDR Calculator
 #   Developed by Juan Orts
 
+# Colors
+greenColor="\e[0;32m\033[1m"
+endColor="\033[0m\e[0m"
+redColor="\e[0;31m\033[1m"
+blueColor="\e[0;34m\033[1m"
+yellowColor="\e[0;33m\033[1m"
+purpleColor="\e[0;35m\033[1m"
+turquoiseColor="\e[0;36m\033[1m"
+grayColor="\e[0;37m\033[1m"
+
 # Exit with Ctrl+C
 
 trap ctrl_c INT
@@ -13,7 +23,7 @@ trap ctrl_c INT
 
 # Ctrl+C
 function ctrl_c(){
-  echo -e "\n\nExiting...\n"
+  echo -e "\n\n${redColor}Exiting...${endColor}\n"
   exit 1
 }
 
@@ -142,41 +152,41 @@ function calculateAll(){
     fi
     
     # Show all information
-    echo -e "\n[+] CIDR Range: $cidr"
-    echo -e "[+] Netmask: $netmask"
-    echo -e "[+] Wildcard bits: $wildcard"
+    echo -e "\n${yellowColor}[+]${endColor} ${greenColor}CIDR Range: $cidr${endColor}"
+    echo -e "${yellowColor}[+]${endColor} Netmask: ${blueColor}$netmask${endColor}"
+    echo -e "${yellowColor}[+]${endColor} Wildcard bits: ${blueColor}$wildcard${endColor}"
     
     if [ $cidrValue -le 30 ]; then
-    echo -e "[+] Network address: $networkAddress"
+    echo -e "${yellowColor}[+]${endColor} ${turquoiseColor}Network${endColor} address: ${blueColor}$networkAddress${endColor}"
     fi
 
     if [ $cidrValue -le 30 ]; then
-      echo -e "[+] First host: $firstHost"
+      echo -e "${yellowColor}[+]${endColor} First host: ${blueColor}$firstHost${endColor}"
     elif [ $cidrValue -eq 31 ]; then
-      echo -e "[+] First host: $networkAddress"
+      echo -e "${yellowColor}[+]${endColor} First host: ${blueColor}$networkAddress${endColor}"
     else
-      echo -e "[+] First host: $networkAddress"
+      echo -e "${yellowColor}[+]${endColor} First host: ${blueColor}$networkAddress${endColor}"
     fi
 
     if [ $cidrValue -le 30 ]; then
-    echo -e "[+] Broadcast address: $broadcastAddress"
+    echo -e "${yellowColor}[+]${endColor} ${purpleColor}Broadcast${endColor} address: ${blueColor}$broadcastAddress${endColor}"
     fi
 
     if [ $cidrValue -le 30 ]; then
-      echo -e "[+] Last host: $lastHost"
+      echo -e "${yellowColor}[+]${endColor} Last host: ${blueColor}$lastHost${endColor}"
     elif [ $cidrValue -eq 31 ]; then
-      echo -e "[+] Last host: $broadcastAddress"
+      echo -e "${yellowColor}[+]${endColor} Last host: ${blueColor}$broadcastAddress${endColor}"
     fi
 
     if [ $cidrValue -le 30 ]; then
-      echo -e "[+] Total hosts: $totalHosts hosts + Network and broadcast addresses\n"
+      echo -e "${yellowColor}[+]${endColor} Total hosts: ${blueColor}$totalHosts hosts${endColor} + ${turquoiseColor}Network${endColor} and ${purpleColor}Broadcast${endColor} addresses\n"
     elif [ $cidrValue -eq 31 ]; then
-      echo -e "[+] Total hosts: 2 hosts\n"
+      echo -e "${yellowColor}[+]${endColor} Total hosts: 2 hosts\n"
     else
-      echo -e "[+] Total hosts: 1 host\n"
+      echo -e "${yellowColor}[+]${endColor} Total hosts: 1 host\n"
     fi
   else
-    echo -e "\n[!] CIDR notation is not valid\n"
+    echo -e "\n${redColor}[!] CIDR notation is not valid${endColor}\n"
     exit 1
   fi
 
@@ -184,11 +194,11 @@ function calculateAll(){
 
 # Help panel
 function helpPanel(){ 
-  echo -e "\n.::  CIDR to IPv4 Conversion Tool  ::.\n"
-  echo -e "Bash script developed by Juan Orts and inspired by https://www.ipaddressguide.com/cidr\n\n"
-  echo -e "[+] Usage: $0\n"
-  echo -e "\t-v <CIDR notation>\tVerbose (detailed output): show all information"
-  echo -e "\t-h\t\t\tHelp: show this menu\n"
+  echo -e "\n${greenColor}.::  CIDR to IPv4 Conversion Tool  ::.${endColor}\n"
+  echo -e "Bash script developed by Juan Orts and inspired by ${blueColor}https://www.ipaddressguide.com/cidr${endColor}\n\n"
+  echo -e "${yellowColor}[+]${endColor} Usage: ${yellowColor}$0${yellowColor}\n"
+  echo -e "\t${yellowColor}-v ${endColor}<CIDR notation>\t${blueColor}Verbose (detailed output): show all information${endColor}"
+  echo -e "\t${yellowColor}-h${endColor}\t\t\t${blueColor}Help: show this menu${endColor}\n"
 }
 
 # **************
